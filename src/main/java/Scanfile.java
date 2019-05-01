@@ -1,13 +1,13 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.*;
 import java.util.regex.Pattern;
 
 public class Scanfile {
 
 
-    private static HashMap<Long, Long> callsInMilliseconds = new HashMap<Long, Long>();
+    private  HashMap<Long, Long> callsInMilliseconds = new HashMap<Long, Long>();
     private BufferedReader callsFileLog;
 
 
@@ -68,5 +68,37 @@ public class Scanfile {
         return callsMap;
     }
 
+    public List<ArrayCell> insertToArrayAndRemoveHmap(HashMap<Long, Long> callsMap) {
+        List<ArrayCell> arrayOfData = new ArrayList();
+
+        //  for (Map.Entry<Long, Long> entry : callsMap.entrySet()) {
+        Iterator<Map.Entry<Long, Long>> entryCell = callsMap.entrySet().iterator();
+        while (entryCell.hasNext()) {
+            Map.Entry<Long, Long> entry = entryCell.next();
+            Long key = entry.getKey();
+            Long value = entry.getValue();
+
+            ArrayCell arrayCell = new ArrayCell();
+            arrayCell.setKay(key);
+            arrayCell.setValue(value);
+
+//Add to array of ArrayCell
+            arrayOfData.add(arrayCell);
+//After insert to array, remove form HMap in order to save space.
+            entryCell.remove();
+        }
+
+
+//sort array by key
+        Collections.sort(arrayOfData, ArrayCell.keyComparator );
+        return arrayOfData;
+    }
+
+
+
+
+
+
 
 }
+
