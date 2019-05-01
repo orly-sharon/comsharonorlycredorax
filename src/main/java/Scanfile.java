@@ -71,7 +71,6 @@ public class Scanfile {
     public List<ArrayCell> insertToArrayAndRemoveHmap(HashMap<Long, Long> callsMap) {
         List<ArrayCell> arrayOfData = new ArrayList();
 
-        //  for (Map.Entry<Long, Long> entry : callsMap.entrySet()) {
         Iterator<Map.Entry<Long, Long>> entryCell = callsMap.entrySet().iterator();
         while (entryCell.hasNext()) {
             Map.Entry<Long, Long> entry = entryCell.next();
@@ -96,7 +95,23 @@ public class Scanfile {
 
 
 
+public List<Long> addedbyValueInArray ( List<ArrayCell> arrayOfData){
+    List<Long> arrayOfValue= new ArrayList<Long>();
+    int arraySize=arrayOfData.size();
+    //Adding the first value
+    if (arraySize!=0) {
+        arrayOfValue.add(arrayOfData.get(0).getValue());
+    }
+    else{
+        return  arrayOfValue;
+    }
 
+    for (int i=1; i<arraySize; i++) {
+        arrayOfValue.add(arrayOfValue.get(i-1)+arrayOfData.get(i).getValue());
+    }
+
+    return  arrayOfValue;
+}
 
 
 

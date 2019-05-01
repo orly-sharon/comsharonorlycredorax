@@ -8,16 +8,17 @@ public class main {
 
 
     public static void main(String[] args) throws IOException {
-    Scanfile  scanfile = new Scanfile();
-         HashMap<Long, Long> callsInMilliseconds = new HashMap<Long, Long>();
-        callsInMilliseconds= scanfile.insertDataFromFile();
+        Scanfile scanfile = new Scanfile();
+        HashMap<Long, Long> callsInMilliseconds = new HashMap<Long, Long>();
+        callsInMilliseconds = scanfile.insertDataFromFile();
         List<ArrayCell> arrayOfData = new ArrayList();
         arrayOfData = scanfile.insertToArrayAndRemoveHmap(callsInMilliseconds);
-
+        List<Long> addaingArray = new ArrayList();
+        addaingArray = scanfile.addedbyValueInArray(arrayOfData);
 
 
         System.out.println(Collections.singletonList(callsInMilliseconds));
 
-        System.out.println("test" + callsInMilliseconds.size() );
+        System.out.println("test" + callsInMilliseconds.size());
     }
 }
