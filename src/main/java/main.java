@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -8,7 +7,7 @@ public class main {
 
     public static void main(String[] args) throws IOException {
     Scanfile  scanfile = new Scanfile();
-         HashMap<Timestamp, Long> callsInMilliseconds = new HashMap<Timestamp, Long>();
+         HashMap<Long, Long> callsInMilliseconds = new HashMap<Long, Long>();
         callsInMilliseconds= scanfile.insertDataFromFile();
         System.out.println(Collections.singletonList(callsInMilliseconds));
 
