@@ -8,17 +8,16 @@ public class main {
 
 
     public static void main(String[] args) throws IOException {
-        Scanfile scanfile = new Scanfile();
+        FindMaxPeriodOfCall findMaxPeriodOfCall = new FindMaxPeriodOfCall();
+        String fileName= "Files/callsLog.txt";
         HashMap<Long, Long> callsInMilliseconds = new HashMap<Long, Long>();
-        callsInMilliseconds = scanfile.insertDataFromFile();
-        List<ArrayCell> arrayOfData = new ArrayList();
-        arrayOfData = scanfile.insertToArrayAndRemoveHmap(callsInMilliseconds);
+        callsInMilliseconds = findMaxPeriodOfCall.insertDataFromFile(fileName);
+        List<TimeCallCountCell> arrayOfData = new ArrayList();
+        arrayOfData = findMaxPeriodOfCall.insertToArrayAndRemoveHmap(callsInMilliseconds);
         List<Long> addaingArray = new ArrayList();
-        addaingArray = scanfile.addedbyValueInArray(arrayOfData);
-
-
-        System.out.println(Collections.singletonList(callsInMilliseconds));
-
-        System.out.println("test" + callsInMilliseconds.size());
+        addaingArray = findMaxPeriodOfCall.addedbyValueInArray(arrayOfData);
+        List<MaxTime> maxTimes= new ArrayList();
+        maxTimes= findMaxPeriodOfCall.getArrayOfMaxTimes(addaingArray,arrayOfData );
+        System.out.println(Collections.singletonList(maxTimes));
     }
 }
