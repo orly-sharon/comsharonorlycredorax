@@ -11,15 +11,6 @@ public class FindMaxPeriodOfCall {
     private BufferedReader callsFileLog;
 
 
-    public HashMap<Long, Long> getCallsInMilliseconds() {
-        return callsInMilliseconds;
-    }
-
-    public void setCallsInMilliseconds(HashMap<Long, Long> callsInMilliseconds) {
-        this.callsInMilliseconds = callsInMilliseconds;
-    }
-
-
     public HashMap<Long, Long> insertDataFromFile(String fileName) throws IOException {
         try {
 
@@ -41,6 +32,8 @@ public class FindMaxPeriodOfCall {
             }
 
 
+        } catch (IOException e) {
+            System.out.println(e);
         } finally {
             callsFileLog.close();
         }
@@ -53,16 +46,16 @@ public class FindMaxPeriodOfCall {
         if (callsMap.containsKey(start)) {
             Long valueFromMap = callsMap.get(start);
             callsMap.put(start, valueFromMap + 1L);
-            // if there is not a call that started in the same time, crate one and initialize it with 1
+            // if there is not a call that started in the same time, create one and initialize it with 1
         } else {
             callsMap.put(start, 1L);
         }
-//if there is a call that ended  in the same time substract  1
+//if there is a call that ended  in the same time subtract  1
         if (callsMap.containsKey(end)) {
             Long valueFromMap = callsMap.get(end);
             callsMap.put(end, valueFromMap - -1L);
 
-            // if there is not a call that ended in the same time, crate one and initialize it with -1
+            // if there is not a call that ended in the same time, create one and initialize it with -1
         } else {
             callsMap.put(end, -1L);
         }
@@ -92,7 +85,7 @@ public class FindMaxPeriodOfCall {
 
 
 //Sort array by milisec
-        Collections.sort(arrayOfData, TimeCallCountCell.miliSecComparator);
+        Collections.sort(arrayOfData, TimeCallCountCell.milliSecComparator);
         return arrayOfData;
     }
 
