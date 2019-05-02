@@ -74,7 +74,7 @@ public class FindMaxPeriodOfCall {
             Long value = entry.getValue();
 
             TimeCallCountCell timeCallCountCell = new TimeCallCountCell();
-            timeCallCountCell.setTimeInMiliSec(key);
+            timeCallCountCell.setTimeInMilliSec(key);
             timeCallCountCell.setCallCount(value);
 
 //Add to array of TimeCallCountCell
@@ -84,7 +84,7 @@ public class FindMaxPeriodOfCall {
         }
 
 
-//Sort array by milisec
+//Sort array by millisec
         Collections.sort(arrayOfData, TimeCallCountCell.milliSecComparator);
         return arrayOfData;
     }
@@ -119,14 +119,14 @@ public class FindMaxPeriodOfCall {
     }
 
 
-    public List<MaxTime> getArrayOfMaxTimes(List<Long> addedbyValueInArray, List<TimeCallCountCell> timeCallCountCellsInMiliSec) {
+    public List<MaxTime> getArrayOfMaxTimes(List<Long> addedbyValueInArray, List<TimeCallCountCell> timeCallCountCellsInMilliSec) {
         List<MaxTime> arrayOfMaxTimes = new ArrayList();
         Long max = findMaxInArray(addedbyValueInArray);
-        int size = timeCallCountCellsInMiliSec.size();
+        int size = timeCallCountCellsInMilliSec.size();
         for (int i = 0; i < size; i++) {
             if (addedbyValueInArray.get(i).equals(max)) {
-                Long startTime = timeCallCountCellsInMiliSec.get(i).getTimeInMiliSec();
-                Long endTime = timeCallCountCellsInMiliSec.get(i + 1).getTimeInMiliSec();
+                Long startTime = timeCallCountCellsInMilliSec.get(i).getTimeInMilliSec();
+                Long endTime = timeCallCountCellsInMilliSec.get(i + 1).getTimeInMilliSec();
                 MaxTime maxTime = new MaxTime(startTime, endTime);
                 arrayOfMaxTimes.add(maxTime);
             }
